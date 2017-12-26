@@ -5,7 +5,7 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native';
 export default class Block extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: PropTypes.string,
+    style: View.propTypes.style,
     onPress: PropTypes.func,
   };
 

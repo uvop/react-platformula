@@ -5,7 +5,7 @@ import { View, TouchableWithoutFeedback, StyleSheet, Keyboard } from 'react-nati
 export default class FocusableBlock extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: PropTypes.string,
+    style: View.propTypes.style,
   };
 
   static defaultProps = {

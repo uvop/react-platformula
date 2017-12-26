@@ -7,7 +7,7 @@ class Input extends Component {
     onValueChange: PropTypes.func.isRequired,
     value: PropTypes.string,
     keyboardType: PropTypes.string,
-    style: PropTypes.shape({}),
+    style: TextInput.propTypes.style,
     selectTextOnFocus: PropTypes.bool,
   };
 

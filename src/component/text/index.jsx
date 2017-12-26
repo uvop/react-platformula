@@ -5,7 +5,7 @@ import { Text as ReactNativeText, StyleSheet } from 'react-native';
 class Text extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: PropTypes.string,
+    style: ReactNativeText.propTypes.style,
     onPress: PropTypes.func,
     pointerEvents: PropTypes.string,
   };

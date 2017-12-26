@@ -14,7 +14,7 @@ const viewStyles = StyleSheet.create({
 export default class ScrollBlock extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: PropTypes.string,
+    style: View.propTypes.style,
   };
 
   static defaultProps = {
