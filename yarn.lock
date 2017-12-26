@@ -63,6 +63,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@omerman/react-native-wheel-picker-android@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@omerman/react-native-wheel-picker-android/-/react-native-wheel-picker-android-1.1.1.tgz#6eb34f0165d7c8cad92ddc9cf6e6d30d58a752b5"
+  dependencies:
+    moment "^2.18.1"
+
 "@types/node@*":
   version "8.5.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.2.tgz#83b8103fa9a2c2e83d78f701a9aa7c9539739aa5"
@@ -4771,12 +4777,6 @@ react-native-device-info@^0.13.0:
 react-native-keep-awake@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-2.0.6.tgz#d8eaffe0a6377cc197469d9f06c7f317225403db"
-
-react-native-wheel-picker-android@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-wheel-picker-android/-/react-native-wheel-picker-android-1.0.3.tgz#938f8064eec4f84dae572ed26d2d6888d619b927"
-  dependencies:
-    moment "^2.18.1"
 
 react-native@*:
   version "0.51.0"

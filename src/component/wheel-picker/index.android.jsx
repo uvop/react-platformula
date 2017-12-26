@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
-import { WheelPicker as RNWheelPicker } from 'react-native-wheel-picker-android';
+import { WheelPicker as RNWheelPicker } from '@omerman/react-native-wheel-picker-android';
 import { isTablet } from 'src/common/device-info';
 import Color from 'color';
 
@@ -74,6 +74,7 @@ class WheelPicker extends Component {
           48
         }
         itemTextFontFamily={itemStyle.fontFamily}
+        itemTextAlign={itemStyle.textAlign}
       />
     );
   }
