@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getCustom as getCustomBlock } from 'src/component/block';
+import createCustomizableComponent from 'src/common/create-customizable-component';
+import Block, { getCustom as getCustomBlock } from 'src/component/block';
 
-export const getCustom = (style) => {
-  const ImageBlock = getCustomBlock({
-    ...style,
-    position: 'relative',
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-  });
+const ImageBlock = getCustomBlock({
+  height: '100%',
+  width: '100%',
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+});
 
-  return class BackgroundBlock extends Component {
-    static propTypes = {
-      children: PropTypes.node,
-      source: PropTypes.string.isRequired,
-    }
-    static defaultProps = {
-      children: undefined,
-    }
-    render() {
-      const { children, source } = this.props;
+class BackgroundBlock extends Component {
+  static propTypes = {
+    source: PropTypes.string.isRequired,
+    children: PropTypes.node,
+  };
 
-      return (
+  static defaultProps = {
+    children: undefined,
+  };
+
+  render() {
+    const { source, children, ...otherProps } = this.props;
+
+    return (
+      <Block {...otherProps}>
         <ImageBlock style={{ backgroundImage: `url(${source})` }}>
           {children}
         </ImageBlock>
-      );
-    }
-  };
-};
+      </Block>
+    );
+  }
+}
 
-export default getCustom({});
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(BackgroundBlock);
+
+export default BaseComponent;
+export const getCustom = _getCustom;

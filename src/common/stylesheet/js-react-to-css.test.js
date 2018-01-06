@@ -1,4 +1,4 @@
-import jsReactToCss from './index';
+import jsReactToCss from './js-react-to-css';
 
 describe('js-react-to-css', () => {
   const defaultValues = {

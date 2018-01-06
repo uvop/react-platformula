@@ -1,44 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text as ReactNativeText, StyleSheet } from 'react-native';
+import { Text as ReactNativeText } from 'react-native';
+import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
 
 class Text extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: ReactNativeText.propTypes.style,
-    onPress: PropTypes.func,
-    pointerEvents: PropTypes.string,
   };
 
   static defaultProps = {
-    children: '',
-    style: undefined,
-    onPress: undefined,
-    pointerEvents: undefined,
+    children: undefined,
   };
 
   render() {
-    const {
-      children, style, onPress, pointerEvents,
-    } = this.props;
+    const { children, ...otherProps } = this.props;
+
     return (
-      <ReactNativeText style={style} onPress={onPress} pointerEvents={pointerEvents}>
-        {children}
-      </ReactNativeText>
+      <ScrollView style={viewStyles.wrapper} contentContainerStyle={viewStyles.innerChild}>
+        <TouchableWithoutFeedback>
+          <View style={stylesheet}>
+            {children}
+          </View>
+        </TouchableWithoutFeedback>
+      </ScrollView>
     );
   }
 }
 
-export const getCustom = ({ pointerEvents, ...style }) => {
-  const {
-    main: customStyle,
-  } = StyleSheet.create({
-    main: style,
-  });
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(Text);
 
-  return props => (
-    <Text {...props} style={customStyle} pointerEvents={pointerEvents} />
-  );
-};
-
-export default getCustom({});
+export default BaseComponent;
+export const getCustom = _getCustom;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
+import createCustomizableComponent from 'src/common/create-customizable-component';
+import stylesheetPropType from 'src/common/stylesheet/prop-types';
 
 const viewStyles = StyleSheet.create({
   wrapper: {
@@ -11,23 +13,24 @@ const viewStyles = StyleSheet.create({
   },
 });
 
-export default class ScrollBlock extends Component {
+class ScrollBlock extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: View.propTypes.style,
+    stylesheet: stylesheetPropType,
   };
 
   static defaultProps = {
     children: undefined,
-    style: undefined,
+    stylesheet: undefined,
   };
 
   render() {
-    const { children, style } = this.props;
+    const { children, stylesheet } = this.props;
+
     return (
       <ScrollView style={viewStyles.wrapper} contentContainerStyle={viewStyles.innerChild}>
         <TouchableWithoutFeedback>
-          <View style={style}>
+          <View style={stylesheet}>
             {children}
           </View>
         </TouchableWithoutFeedback>
@@ -36,12 +39,10 @@ export default class ScrollBlock extends Component {
   }
 }
 
-export const getCustom = (style) => {
-  const styles = StyleSheet.create({
-    main: style,
-  });
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(ScrollBlock);
 
-  return props => (
-    <ScrollBlock {...props} style={styles.main} />
-  );
-};
+export default BaseComponent;
+export const getCustom = _getCustom;

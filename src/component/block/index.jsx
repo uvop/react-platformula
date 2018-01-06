@@ -1,43 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
 
-export default class Block extends Component {
+class Block extends Component {
   static propTypes = {
     children: PropTypes.node,
-    style: View.propTypes.style,
-    onPress: PropTypes.func,
   };
 
   static defaultProps = {
     children: undefined,
-    style: undefined,
-    onPress: undefined,
   };
 
   render() {
-    const { children, style, onPress } = this.props;
-    if (onPress) {
+    const { children, ...otherProps } = this.props;
+    if (otherProps.onPress) {
       return (
-        <TouchableOpacity style={style} onPress={onPress}>
+        <TouchableOpacity {...mapProps(otherProps)}>
           {children}
         </TouchableOpacity>
       );
     }
     return (
-      <View style={style}>
+      <View {...mapProps(otherProps)}>
         {children}
       </View>
     );
   }
 }
 
-export const getCustom = (style) => {
-  const styles = StyleSheet.create({
-    main: style,
-  });
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(Block);
 
-  return props => (
-    <Block {...props} style={styles.main} />
-  );
-};
+export default BaseComponent;
+export const getCustom = _getCustom;

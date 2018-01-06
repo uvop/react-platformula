@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image as RNImage, StyleSheet } from 'react-native';
+import { Image as RNImage } from 'react-native';
+import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
 
 class Image extends Component {
   static propTypes = {
@@ -8,33 +9,24 @@ class Image extends Component {
       PropTypes.string,
       PropTypes.object,
     ]).isRequired,
-    style: PropTypes.string,
-  };
-
-  static defaultProps = {
-    style: undefined,
   };
 
   render() {
-    const { source, style } = this.props;
+    const { source, ...otherProps } = this.props;
 
     return (
       <RNImage
+        {...mapProps(otherProps)}
         source={typeof source === 'string' ? { uri: source } : source}
-        style={style}
       />
     );
   }
 }
 
-export const getCustom = (style) => {
-  const styles = StyleSheet.create({
-    main: style,
-  });
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(Image);
 
-  return props => (
-    <Image {...props} style={styles.main} />
-  );
-};
-
-export default getCustom({});
+export default BaseComponent;
+export const getCustom = _getCustom;

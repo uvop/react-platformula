@@ -1,39 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import jsReactToCss from 'src/common/js-react-to-css';
-import jss from 'jss';
+import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
 
 class Image extends Component {
   static propTypes = {
     source: PropTypes.string.isRequired,
-    className: PropTypes.string,
-  };
-
-  static defaultProps = {
-    className: undefined,
   };
 
   render() {
-    const { source, className } = this.props;
+    const {
+      source,
+      ...otherProps
+    } = this.props;
 
     return (
       <img
         alt=""
         src={source}
-        className={className}
+        {...mapProps(otherProps)}
       />
     );
   }
 }
 
-export const getCustom = (style) => {
-  const { classes } = jss.createStyleSheet({
-    main: jsReactToCss(style),
-  }).attach();
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(Image);
 
-  return props => (
-    <Image {...props} className={classes.main} />
-  );
-};
-
-export default getCustom({});
+export default BaseComponent;
+export const getCustom = _getCustom;
