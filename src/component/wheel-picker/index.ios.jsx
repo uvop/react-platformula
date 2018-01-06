@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Picker, StyleSheet } from 'react-native';
+import directions, { propType as directionPropType } from 'src/constant/direction';
 
 const valuePropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
 ]);
+
+const {
+  left: leftStyle,
+  right: rightStyle,
+} = StyleSheet.create({
+  left: {
+    textAlign: 'center',
+    marginRight: -75,
+  },
+  right: {
+    textAlign: 'right',
+  },
+});
 
 class WheelPicker extends Component {
   static propTypes = {
@@ -17,12 +31,28 @@ class WheelPicker extends Component {
     })),
     style: PropTypes.shape({}).isRequired,
     itemStyle: PropTypes.shape({}).isRequired,
+    direction: directionPropType,
+    textAlign: PropTypes.string,
   };
   static defaultProps = {
     value: undefined,
     onValueChange: undefined,
     values: [],
+    direction: directions.ltr,
+    textAlign: 'left',
   };
+
+  getCustomAlignmentStyle() {
+    const { direction, textAlign } = this.props;
+
+    if (
+      (direction === direction.rtl && textAlign === 'left') ||
+      (direction === direction.ltr && textAlign === 'right')
+    ) {
+      return rightStyle;
+    }
+    return leftStyle;
+  }
 
   renderItems() {
     const { values } = this.props;
@@ -40,7 +70,7 @@ class WheelPicker extends Component {
     return (
       <Picker
         style={style}
-        itemStyle={itemStyle}
+        itemStyle={[itemStyle, this.getCustomAlignmentStyle()]}
         selectedValue={value}
         onValueChange={onValueChange}
       >
@@ -72,7 +102,6 @@ export const getCustom = (style = {}) => {
     color,
     fontSize,
     fontFamily,
-    textAlign,
     padding,
     paddingTop,
     paddingRight,
@@ -94,7 +123,7 @@ export const getCustom = (style = {}) => {
   });
 
   return props => (
-    <WheelPicker {...props} style={customStyle} itemStyle={customItemStyle} />
+    <WheelPicker {...props} style={customStyle} itemStyle={customItemStyle} textAlign={textAlign} />
   );
 };
 
