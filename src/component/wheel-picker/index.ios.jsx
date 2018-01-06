@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Picker, StyleSheet } from 'react-native';
+import { Hoc as DirectionHoc } from 'src/provider/direction';
 import directions, { propType as directionPropType } from 'src/constant/direction';
 
 const valuePropType = PropTypes.oneOfType([
@@ -21,6 +22,9 @@ const {
   },
 });
 
+@DirectionHoc(ctx => ({
+  direction: ctx.value,
+}))
 class WheelPicker extends Component {
   static propTypes = {
     value: valuePropType,
