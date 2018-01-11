@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import createCustomizableComponent from 'src/common/create-customizable-component';
-import stylesheetPropType from 'src/common/stylesheet/prop-types';
 
-class Image extends Component {
+class Text extends Component {
   static propTypes = {
-    source: PropTypes.string.isRequired,
-    stylesheet: stylesheetPropType,
-  };
-
-  static defaultProps = {
-    stylesheet: undefined,
+    children: PropTypes.node.isRequired,
   };
 
   render() {
     const {
-      source,
-      stylesheet,
+      children,
+      ...otherProps
     } = this.props;
 
     return (
-      <img
-        alt=""
-        src={source}
-        className={stylesheet}
-      />
+      <div
+        {...otherProps}
+      >
+        {children}
+      </div>
     );
   }
 }
@@ -32,7 +26,7 @@ class Image extends Component {
 const {
   Component: BaseComponent,
   getCustom: _getCustom,
-} = createCustomizableComponent(Image);
+} = createCustomizableComponent(Text);
 
 export default BaseComponent;
 export const getCustom = _getCustom;

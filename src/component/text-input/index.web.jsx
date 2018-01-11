@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import jss from 'jss';
-import jsReactToCss from 'src/common/js-react-to-css';
+import createCustomizableComponent from 'src/common/create-customizable-component';
 
 const rnKeyboardTypeToWeb = (keyboardType) => {
   if (keyboardType === 'numeric') {
@@ -10,50 +9,49 @@ const rnKeyboardTypeToWeb = (keyboardType) => {
   return 'text';
 };
 
-class Input extends Component {
+const selectTarget = (e) => {
+  e.target.select();
+};
+
+class TextInput extends Component {
   static propTypes = {
-    onValueChange: PropTypes.func.isRequired,
     value: PropTypes.string,
+    onValueChange: PropTypes.func.isRequired,
     keyboardType: PropTypes.string,
-    className: PropTypes.string,
     selectTextOnFocus: PropTypes.bool,
   };
 
   static defaultProps = {
     value: '',
     keyboardType: undefined,
-    className: undefined,
     selectTextOnFocus: false,
   };
 
-  static selectTarget(e) {
-    e.target.select();
-  }
-
   render() {
     const {
-      value, onValueChange, keyboardType, className, selectTextOnFocus,
+      value,
+      onValueChange,
+      keyboardType,
+      selectTextOnFocus,
+      ...otherProps
     } = this.props;
+
     return (
       <input
         type={rnKeyboardTypeToWeb(keyboardType)}
-        className={className}
         value={value}
-        onFocus={selectTextOnFocus ? Input.selectTarget : undefined}
         onChange={(e) => { onValueChange(e.target.value); }}
+        onFocus={selectTextOnFocus ? selectTarget : undefined}
+        {...otherProps}
       />
     );
   }
 }
 
-export const getCustom = (styles) => {
-  const { classes } = jss.createStyleSheet({
-    main: jsReactToCss(styles),
-  }).attach();
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(TextInput);
 
-  return props => (
-    <Input {...props} className={classes.main} />
-  );
-};
-
-export default getCustom({});
+export default BaseComponent;
+export const getCustom = _getCustom;

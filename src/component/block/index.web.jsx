@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
+import createCustomizableComponent from 'src/common/create-customizable-component';
 
 class Block extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ class Block extends Component {
     const { children, ...otherProps } = this.props;
 
     return (
-      <div {...mapProps(otherProps)}>
+      <div {...otherProps}>
         {children}
       </div>
     );

@@ -15,6 +15,7 @@ const RtlBlock = getCustomBlock({
 const {
   Provider: InternalProvider,
   Hoc: InternalHoc,
+  RenderChildren: InternalRenderChildren,
 } = createReactProvider({
   value: directionPropType,
 });
@@ -59,3 +60,4 @@ class DirectionProvider extends Component {
 
 export const Provider = DirectionProvider;
 export const Hoc = InternalHoc;
+export const RenderChildren = InternalRenderChildren;

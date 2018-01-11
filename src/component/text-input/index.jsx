@@ -1,48 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput as RNTextInput } from 'react-native';
+import createCustomizableComponent from 'src/common/create-customizable-component';
 
-class Input extends Component {
+class TextInput extends Component {
   static propTypes = {
     onValueChange: PropTypes.func.isRequired,
     value: PropTypes.string,
     keyboardType: PropTypes.string,
-    style: TextInput.propTypes.style,
     selectTextOnFocus: PropTypes.bool,
   };
 
   static defaultProps = {
     keyboardType: undefined,
     value: '',
-    style: undefined,
     selectTextOnFocus: false,
   };
 
   render() {
     const {
-      value, onValueChange, keyboardType, selectTextOnFocus, style,
+      value,
+      onValueChange,
+      keyboardType,
+      selectTextOnFocus,
+      ...otherProps
     } = this.props;
+
     return (
-      <TextInput
-        onChangeText={onValueChange}
+      <RNTextInput
         value={value}
+        onChangeText={onValueChange}
         keyboardType={keyboardType}
-        style={style}
         underlineColorAndroid="transparent"
         selectTextOnFocus={selectTextOnFocus}
+        {...otherProps}
       />
     );
   }
 }
 
-export const getCustom = (style) => {
-  const styles = StyleSheet.create({
-    main: style,
-  });
+const {
+  Component: BaseComponent,
+  getCustom: _getCustom,
+} = createCustomizableComponent(TextInput);
 
-  return props => (
-    <Input {...props} style={styles.main} />
-  );
-};
-
-export default getCustom({});
+export default BaseComponent;
+export const getCustom = _getCustom;

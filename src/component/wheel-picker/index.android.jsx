@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { WheelPicker as RNWheelPicker } from '@omerman/react-native-wheel-picker-android';
-import { isTablet } from 'src/common/device-info';
+import { isTablet } from 'src/api/device-info';
 import Color from 'color';
 
 const fixSelectedTextColor = (color) => {

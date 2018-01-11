@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image as RNImage } from 'react-native';
-import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
+import createCustomizableComponent from 'src/common/create-customizable-component';
 
 class Image extends Component {
   static propTypes = {
@@ -16,8 +16,8 @@ class Image extends Component {
 
     return (
       <RNImage
-        {...mapProps(otherProps)}
         source={typeof source === 'string' ? { uri: source } : source}
+        {...otherProps}
       />
     );
   }

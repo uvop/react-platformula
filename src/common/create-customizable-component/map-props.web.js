@@ -1,8 +1,11 @@
 export default ({
+  stylesheets,
+}, {
   onPress,
-  stylesheet,
+  ...otherProps
 }) => ({
-  className: stylesheet,
+  className: stylesheets.join(' '),
   onClick: onPress,
   style: onPress ? { cursor: 'pointer' } : undefined,
+  ...otherProps,
 });

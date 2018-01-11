@@ -1,7 +1,6 @@
 export default ({
-  onPress,
-  stylesheet,
-}) => ({
-  style: stylesheet,
-  onPress,
+  stylesheets,
+}, props) => ({
+  style: stylesheets,
+  ...props,
 });

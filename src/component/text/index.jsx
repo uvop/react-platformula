@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text as ReactNativeText } from 'react-native';
-import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
+import { Text as RNText } from 'react-native';
+import createCustomizableComponent from 'src/common/create-customizable-component';
 
 class Text extends Component {
   static propTypes = {
-    children: PropTypes.node,
-  };
-
-  static defaultProps = {
-    children: undefined,
+    children: PropTypes.node.isRequired,
   };
 
   render() {
     const { children, ...otherProps } = this.props;
 
     return (
-      <ScrollView style={viewStyles.wrapper} contentContainerStyle={viewStyles.innerChild}>
-        <TouchableWithoutFeedback>
-          <View style={stylesheet}>
-            {children}
-          </View>
-        </TouchableWithoutFeedback>
-      </ScrollView>
+      <RNText
+        {...otherProps}
+      >
+        {children}
+      </RNText>
     );
   }
 }

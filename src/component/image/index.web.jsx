@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import createCustomizableComponent, { mapProps } from 'src/common/create-customizable-component';
+import createCustomizableComponent from 'src/common/create-customizable-component';
 
 class Image extends Component {
   static propTypes = {
@@ -17,7 +17,7 @@ class Image extends Component {
       <img
         alt=""
         src={source}
-        {...mapProps(otherProps)}
+        {...otherProps}
       />
     );
   }
