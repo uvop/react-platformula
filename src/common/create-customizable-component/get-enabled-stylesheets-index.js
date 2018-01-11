@@ -8,4 +8,4 @@ export default (customStylesheets, props) => customStylesheets
     }
     return false;
   })
-  .map(({ stylesheet }) => stylesheet);
+  .map((_, i) => i);

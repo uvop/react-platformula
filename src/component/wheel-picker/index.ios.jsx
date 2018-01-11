@@ -33,8 +33,8 @@ class WheelPicker extends Component {
       label: PropTypes.string,
       value: valuePropType.isRequired,
     })),
-    style: PropTypes.shape({}).isRequired,
-    itemStyle: PropTypes.shape({}).isRequired,
+    style: PropTypes.number.isRequired,
+    itemStyle: PropTypes.number.isRequired,
     direction: directionPropType,
     textAlign: PropTypes.string,
   };

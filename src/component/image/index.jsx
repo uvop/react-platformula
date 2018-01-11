@@ -7,7 +7,7 @@ class Image extends Component {
   static propTypes = {
     source: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.object,
+      PropTypes.number,
     ]).isRequired,
   };
 

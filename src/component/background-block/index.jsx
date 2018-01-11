@@ -19,7 +19,10 @@ const Image = getCustomImage({
 
 class BackgroundBlock extends Component {
   static propTypes = {
-    source: PropTypes.string.isRequired,
+    source: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
     children: PropTypes.node,
   };
 
