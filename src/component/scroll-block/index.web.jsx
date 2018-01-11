@@ -17,7 +17,6 @@ const InnerScrollingBlock = getCustomBlock({
 
 class ScrollBlock extends Component {
   static propTypes = {
-    source: PropTypes.string.isRequired,
     children: PropTypes.node,
   };
 
@@ -26,7 +25,7 @@ class ScrollBlock extends Component {
   };
 
   render() {
-    const { source, children, ...otherProps } = this.props;
+    const { children, ...otherProps } = this.props;
 
     return (
       <Block {...otherProps}>

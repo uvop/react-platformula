@@ -11,7 +11,7 @@ export default (...styles) => {
       }),
       {},
     )
-  ));
+  )).attach();
 
   return Array
     .from({ length: styles.length })
