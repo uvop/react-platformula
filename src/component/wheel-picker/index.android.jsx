@@ -31,6 +31,7 @@ class WheelPicker extends Component {
       color: PropTypes.string,
       fontFamily: PropTypes.string,
       fontSize: PropTypes.number,
+      textAlign: PropTypes.string,
     }),
   };
   static defaultProps = {
@@ -69,10 +70,7 @@ class WheelPicker extends Component {
         style={style}
         selectedItemTextColor={itemColor}
         itemTextColor={Color(itemColor).darken(0.4).hex()}
-        itemTextSize={itemStyle.fontSize !== undefined ?
-          (itemStyle.fontSize * (isTablet ? 1.5 : 3)) :
-          48
-        }
+        itemTextSize={((itemStyle.fontSize || 16) * (isTablet ? 1.3 : 2.6))}
         itemTextFontFamily={itemStyle.fontFamily}
         itemTextAlign={itemStyle.textAlign}
       />
@@ -93,7 +91,7 @@ export const getCustom = (style = {}) => {
   } = StyleSheet.create({
     main: {
       ...otherStyle,
-      height: isTablet ? 300 : 150,
+      height: isTablet ? 320 : 160,
       width: '100%',
     },
   });
