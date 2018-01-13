@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { WheelPicker as RNWheelPicker } from '@omerman/react-native-wheel-picker-android';
 import { isTablet } from 'src/api/device-info';
 import Color from 'color';
-import { Hoc as DirectionHoc } from 'src/provider/direction';
+import { Hoc as DirectionHoc } from 'src/module/direction';
 import directions, { propType as directionPropType } from 'src/constant/direction';
 
 const fixSelectedTextColor = (color) => {

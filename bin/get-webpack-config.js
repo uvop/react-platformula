@@ -39,6 +39,14 @@ module.exports = ({
     .map(name => path.resolve(modulesFolder, name))
     .filter(isFile);
 
+  const webpackEntries = entries.reduce((obj, entryPath) => Object.assign({}, obj, {
+    [path.basename(entryPath, path.extname(entryPath))]: entryPath,
+  }), {});
+
+  const moduleNameByRelativePath = entries.reduce((obj, entryPath) => Object.assign({}, obj, {
+    [path.relative(rootPath, entryPath).split(path.sep).join('/').replace(path.extname(entryPath), '')]: path.basename(entryPath, path.extname(entryPath)),
+  }), {});
+
   let deviceExtensions;
   let outputExtension;
   switch (type) {
@@ -61,9 +69,7 @@ module.exports = ({
   return ({
     bail,
     devtool: 'source-map',
-    entry: entries.reduce((obj, entryPath) => Object.assign({}, obj, {
-      [path.basename(entryPath, path.extname(entryPath))]: entryPath,
-    }), {}),
+    entry: webpackEntries,
     output: {
       path: path.resolve(rootPath, 'lib'),
       filename: `[name]${outputExtension}.js`,
@@ -73,8 +79,8 @@ module.exports = ({
       new webpack.DefinePlugin({
         __DEV__: 'process.env !== \'production\'',
         __IOS__: type === buildType.ios ? 'true' : 'false',
-        __ANDROID__: type === buildType.ios ? 'true' : 'false',
-        __WEB__: type === buildType.ios ? 'true' : 'false',
+        __ANDROID__: type === buildType.android ? 'true' : 'false',
+        __WEB__: type === buildType.web ? 'true' : 'false',
       }),
     ],
     module: {
@@ -121,6 +127,14 @@ module.exports = ({
     externals: []
       .concat(nodeExternals({
         modulesDir: path.join(rootPath, 'node_modules'),
-      })),
+      }))
+      .concat((context, request, callback) => {
+        const exportedModule = moduleNameByRelativePath[request];
+        if (exportedModule) {
+          return callback(null, 'commonjs react-platformula/' + exportedModule);
+        }
+        callback();
+        return undefined;
+      }),
   });
 };
