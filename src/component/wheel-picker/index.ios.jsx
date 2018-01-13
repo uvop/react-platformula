@@ -43,19 +43,25 @@ class WheelPicker extends Component {
     onValueChange: undefined,
     values: [],
     direction: directions.ltr,
-    textAlign: 'left',
+    textAlign: undefined,
   };
 
   getCustomAlignmentStyle() {
     const { direction, textAlign } = this.props;
 
     if (
-      (direction === direction.rtl && textAlign === 'left') ||
-      (direction === direction.ltr && textAlign === 'right')
+      (direction === directions.rtl && textAlign === 'left') ||
+      (direction === directions.ltr && textAlign === 'right')
     ) {
       return rightStyle;
+    } else if (
+      (direction === directions.ltr && textAlign === 'left') ||
+      (direction === directions.rtl && textAlign === 'right')
+    ) {
+      return leftStyle;
     }
-    return leftStyle;
+
+    return undefined;
   }
 
   renderItems() {

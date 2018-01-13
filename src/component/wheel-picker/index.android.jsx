@@ -4,6 +4,8 @@ import { StyleSheet } from 'react-native';
 import { WheelPicker as RNWheelPicker } from '@omerman/react-native-wheel-picker-android';
 import { isTablet } from 'src/api/device-info';
 import Color from 'color';
+import { Hoc as DirectionHoc } from 'src/provider/direction';
+import directions, { propType as directionPropType } from 'src/constant/direction';
 
 const fixSelectedTextColor = (color) => {
   if (['white', '#ffffff', '#fff'].indexOf(color) !== -1) {
@@ -18,6 +20,9 @@ const valuePropType = PropTypes.oneOfType([
   PropTypes.number,
 ]);
 
+@DirectionHoc(ctx => ({
+  direction: ctx.value,
+}))
 class WheelPicker extends Component {
   static propTypes = {
     value: valuePropType,
@@ -33,6 +38,7 @@ class WheelPicker extends Component {
       fontSize: PropTypes.number,
       textAlign: PropTypes.string,
     }),
+    direction: directionPropType,
   };
   static defaultProps = {
     value: undefined,
@@ -51,6 +57,25 @@ class WheelPicker extends Component {
       onValueChange(newValue, newValueIndex);
     }
   }
+
+  getTextAlign() {
+    const {
+      direction,
+      itemStyle: {
+        textAlign,
+      },
+    } = this.props;
+
+    if (direction === directions.rtl) {
+      if (textAlign === 'left') {
+        return 'right';
+      } else if (textAlign === 'right') {
+        return 'left';
+      }
+    }
+    return textAlign;
+  }
+
 
   render() {
     const {
@@ -72,7 +97,7 @@ class WheelPicker extends Component {
         itemTextColor={Color(itemColor).darken(0.4).hex()}
         itemTextSize={((itemStyle.fontSize || 16) * (isTablet ? 1.3 : 2.6))}
         itemTextFontFamily={itemStyle.fontFamily}
-        itemTextAlign={itemStyle.textAlign}
+        itemTextAlign={this.getTextAlign()}
       />
     );
   }
