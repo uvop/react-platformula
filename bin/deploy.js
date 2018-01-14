@@ -14,6 +14,11 @@ fs.copyFileSync(
   path.resolve(publishPath, 'package.json'),
 );
 
+fs.copyFileSync(
+  path.resolve(__dirname, '..', 'README.md'),
+  path.resolve(publishPath, 'README.md'),
+);
+
 execSync('npm publish', {
   cwd: publishPath,
 });
