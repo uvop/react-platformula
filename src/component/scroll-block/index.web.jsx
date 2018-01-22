@@ -4,8 +4,7 @@ import createCustomizableComponent from 'src/common/create-customizable-componen
 import Block, { getCustom as getCustomBlock } from 'src/component/block';
 
 const ScrollingBlock = getCustomBlock({
-  height: '100%',
-  width: '100%',
+  flex: 1,
   display: 'block',
   overflowY: 'scroll',
   '-webkit-overflow-scrolling': 'touch',
