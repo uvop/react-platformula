@@ -4,10 +4,10 @@ import createCustomizableComponent from 'src/common/create-customizable-componen
 import Block, { getCustom as getCustomBlock } from 'src/component/block';
 
 const ImageBlock = getCustomBlock({
-  height: '100%',
-  width: '100%',
+  flex: '1 1',
   backgroundPosition: 'center',
   backgroundSize: 'cover',
+  flexDirection: 'inherit',
 });
 
 class BackgroundBlock extends Component {
