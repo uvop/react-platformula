@@ -40,23 +40,14 @@ class WheelPicker extends Component {
     }),
     direction: directionPropType,
   };
+
   static defaultProps = {
     value: undefined,
     onValueChange: undefined,
     values: [],
     itemStyle: {},
+    direction: directions.ltr,
   };
-
-  handleItemSelected = this.handleItemSelected.bind(this);
-
-  handleItemSelected(e) {
-    const { values, onValueChange } = this.props;
-    if (onValueChange) {
-      const { position: newValueIndex } = e;
-      const { value: newValue } = values[newValueIndex];
-      onValueChange(newValue, newValueIndex);
-    }
-  }
 
   getTextAlign() {
     const {
@@ -76,6 +67,16 @@ class WheelPicker extends Component {
     return textAlign;
   }
 
+  handleItemSelected = this.handleItemSelected.bind(this);
+
+  handleItemSelected(e) {
+    const { values, onValueChange } = this.props;
+    if (onValueChange) {
+      const { position: newValueIndex } = e;
+      const { value: newValue } = values[newValueIndex];
+      onValueChange(newValue, newValueIndex);
+    }
+  }
 
   render() {
     const {

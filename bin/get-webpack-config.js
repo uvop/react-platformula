@@ -131,7 +131,7 @@ module.exports = ({
       .concat((context, request, callback) => {
         const exportedModule = moduleNameByRelativePath[request];
         if (exportedModule) {
-          return callback(null, 'commonjs react-platformula/' + exportedModule);
+          return callback(null, `commonjs react-platformula/${exportedModule}`);
         }
         callback();
         return undefined;

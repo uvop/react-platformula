@@ -1,21 +1,21 @@
 const shorthandToLong = str => str.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
 const valueByKey = (val, key, style) => {
   if (key === 'flex') {
-    let flexBasis = '';
+    let flexBasis = 'auto';
     if (style.width !== undefined) {
       if (typeof style.width === 'number') {
-        flexBasis = ` ${style.width}px`;
+        flexBasis = `${style.width}px`;
       } else {
-        flexBasis = ` ${style.width}`;
+        flexBasis = `${style.width}`;
       }
     } else if (style.height !== undefined) {
       if (typeof style.height === 'number') {
-        flexBasis = ` ${style.height}px`;
+        flexBasis = `${style.height}px`;
       } else {
-        flexBasis = ` ${style.height}`;
+        flexBasis = `${style.height}`;
       }
     }
-    return `${val} ${val}${flexBasis}`;
+    return `${val} ${val} ${flexBasis}`;
   } else if (key === 'fontSize') {
     return `${val / 16}rem`;
   } else if (typeof val === 'number' && ['opacity'].indexOf(key) === -1) {
