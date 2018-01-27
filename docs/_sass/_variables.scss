@@ -1,0 +1,60 @@
+$primary: #26C6DA;
+$linkColor: darken($primary, 9%);
+$linkInteract: darken($linkColor, 9%);
+$pageBg: #f9f9f9;
+
+$lightColor: #e9e9e9;
+$mediumestColor: #666;
+$mediumColor: #484848;
+$darkColor: #2d2d2d;
+$darkestColor: #222222;
+$rxpColor: #26C6DA;
+
+$lightTextColor: #fafafa;
+$mediumTextColor: #aaa;
+$darkTextColor: $mediumColor;
+
+$buttonBlueTop: #77a3d2;
+$buttonBlueBottom: #4783c2;
+$buttonGreyTop: #9a9a9a;
+$buttonGreyBottom: #646464;
+
+
+$helvetica: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+
+
+@mixin clearfix {
+  &:after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+}
+
+// HiDPI mixin. Default value set to 1.3 to target Google Nexus 7 (http://bjango.com/articles/min-device-pixel-ratio/)
+@mixin hidpi($ratio: 1.3) {
+  @media only screen and (-webkit-min-device-pixel-ratio: $ratio),
+  only screen and (min--moz-device-pixel-ratio: $ratio),
+  only screen and (-o-min-device-pixel-ratio: #{$ratio}/1),
+  only screen and (min-resolution: #{round($ratio*96)}dpi),
+  only screen and (min-resolution: #{$ratio}dppx) {
+    @content;
+  }
+}
+
+
+@mixin retina-image($filename, $background-size, $extension: png, $retina-filename: null, $retina-suffix: _2x) {
+  background-image: url("#{$filename}.#{$extension}");
+
+  @include hidpi {
+    @if $retina-filename {
+      background-image: url("#{$retina-filename}.#{$extension}");
+    }
+    @else {
+      background-image: url("#{$filename}#{$retina-suffix}.#{$extension}");
+    }
+
+    background-size: $background-size;
+  }
+}
+
