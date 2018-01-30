@@ -18,7 +18,7 @@ const valueByKey = (val, key, style) => {
     return `${val} ${val} ${flexBasis}`;
   } else if (key === 'fontSize') {
     return `${val / 16}rem`;
-  } else if (typeof val === 'number' && ['opacity'].indexOf(key) === -1) {
+  } else if (typeof val === 'number' && ['opacity', 'zIndex'].indexOf(key) === -1) {
     return `${val}px`;
   }
   return val;
