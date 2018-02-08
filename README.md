@@ -1,5 +1,8 @@
-# React Platformula
-[![npm version](https://badge.fury.io/js/react-platformula.svg)](https://badge.fury.io/js/react-platformula)[![Build Status](https://travis-ci.org/uvop/react-platformula.svg?branch=master)](https://travis-ci.org/uvop/react-platformula)
+<center>
+  <img src="https://raw.githubusercontent.com/react-platformula/react-platformula.github.io/master/logo.svg?sanitize=true" width="200px" >
+</center>
+
+# [React Platformula]() &middot; [![npm version](https://badge.fury.io/js/react-platformula.svg)](https://badge.fury.io/js/react-platformula)[![Build Status](https://travis-ci.org/uvop/react-platformula.svg?branch=master)](https://travis-ci.org/uvop/react-platformula)
 
 ## Introdution
 React components and apis which work for Web, Android and iOS!  
