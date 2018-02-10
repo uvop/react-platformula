@@ -17,9 +17,12 @@ export default (Component) => {
     return (props) => {
       const enabledStylesheetsIndex = getEnabledStylesheetsIndex(customStyleArr, props);
 
-      const enabledStylesheets = enabledStylesheetsIndex.map((_, i) => customStylesheets[i]);
+      const enabledStylesheets = enabledStylesheetsIndex.map((
+        enabledIndex => customStylesheets[enabledIndex]
+      ));
+
       const enabledStylesheetProps = enabledStylesheetsIndex.map((
-        (_, i) => customStylesheetProps[i]
+        enabledIndex => customStylesheetProps[enabledIndex]
       ));
 
       const styleProps = enabledStylesheetProps.reduce((obj, style) => ({
