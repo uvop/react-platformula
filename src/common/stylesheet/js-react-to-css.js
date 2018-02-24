@@ -1,6 +1,13 @@
 const shorthandToLong = str => str.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
 const valueByKey = (val, key, style) => {
-  if (key === 'flex') {
+  if (key === 'transform') {
+    return val
+      .map((
+        transformObj => Object.entries(transformObj)
+          .map(([transformName, transformValue]) => `${transformName}(${typeof transformValue === 'number' ? `${transformValue}px` : transformValue})`)
+          .join(' ')
+      )).join(' ');
+  } else if (key === 'flex') {
     let flexBasis = 'auto';
     if (style.width !== undefined) {
       if (typeof style.width === 'number') {
