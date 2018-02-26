@@ -1,6 +1,9 @@
 export default ({
   stylesheets,
-}, props) => ({
-  style: stylesheets,
-  ...props,
+}, {
+  style: styleProp,
+  ...otherProps
+}) => ({
+  style: stylesheets.concat(styleProp !== undefined ? styleProp : []),
+  ...otherProps,
 });
