@@ -1,4 +1,3 @@
-const shorthandToLong = str => str.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
 const valueByKey = (val, key, style) => {
   if (key === 'transform') {
     return val
@@ -31,16 +30,6 @@ const valueByKey = (val, key, style) => {
   return val;
 };
 
-const autoDisplayFlex = style => ({
-  display: 'flex',
-  ...style,
-});
-
-const autoFlexDirectionColumn = style => ({
-  'flex-direction': 'column',
-  ...style,
-});
-
 const autoBorderStyleIfNeeded = style => ((
   style.borderWidth !== undefined ||
   style.borderTopWidth !== undefined ||
@@ -55,9 +44,9 @@ const autoBorderStyleIfNeeded = style => ((
 
 const transformStyle = style => Object.keys(style).reduce((obj, key) => ({
   ...obj,
-  [shorthandToLong(key)]: valueByKey(style[key], key, style),
+  [key]: valueByKey(style[key], key, style),
 }), {});
 
 export default style => (
-  autoDisplayFlex(autoFlexDirectionColumn(transformStyle(autoBorderStyleIfNeeded(style))))
+  transformStyle(autoBorderStyleIfNeeded(style))
 );

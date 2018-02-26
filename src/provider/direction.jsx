@@ -5,10 +5,12 @@ import { getCustom as getCustomBlock } from 'src/component/block';
 import directions, { propType as directionPropType } from 'src/constant/direction';
 
 const LtrBlock = getCustomBlock({
+  flex: 1,
   direction: 'ltr',
 });
 
 const RtlBlock = getCustomBlock({
+  flex: 1,
   direction: 'rtl',
 });
 

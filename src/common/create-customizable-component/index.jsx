@@ -1,5 +1,6 @@
 import React from 'react';
 import createStylesheet from 'src/common/stylesheet/create';
+import defaultStylesheets from 'src/common/stylesheet/default-stylesheets';
 import getEnabledStylesheetsIndex from './get-enabled-stylesheets-index';
 import getPropsFromStyle from './get-props-from-style';
 import mapProps from './map-props';
@@ -33,7 +34,11 @@ export default (Component) => {
       return (
         <Component
           {...styleProps}
-          {...mapProps({ stylesheets: [baseStylesheet].concat(enabledStylesheets) }, props)}
+          {...mapProps({
+            stylesheets: defaultStylesheets
+              .concat(baseStylesheet)
+              .concat(enabledStylesheets),
+          }, props)}
         />
       );
     };

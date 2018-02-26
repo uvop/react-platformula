@@ -1,5 +1,6 @@
 import jss from 'jss';
-import jsReactToCss from './js-react-to-css';
+import jsReactToCssKey from './js-react-to-css-key';
+import jsReactToCssValue from './js-react-to-css-value';
 import getNameForIndex from './get-name-for-index';
 
 export default (...styles) => {
@@ -7,7 +8,7 @@ export default (...styles) => {
     styles.reduce(
       (obj, style, i) => ({
         ...obj,
-        [getNameForIndex(i)]: jsReactToCss(style),
+        [getNameForIndex(i)]: jsReactToCssKey(jsReactToCssValue(style)),
       }),
       {},
     )

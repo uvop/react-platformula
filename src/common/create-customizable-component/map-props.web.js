@@ -1,4 +1,4 @@
-import jsReactToCss from 'src/common/stylesheet/js-react-to-css';
+import jsReactToCss from 'src/common/stylesheet/js-react-to-css-value';
 
 export default ({
   stylesheets,
