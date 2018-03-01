@@ -1,6 +1,6 @@
 {
   "name": "react-platformula",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Components and tools to write cross-platform react apps",
   "scripts": {
     "lint": "eslint --ext .js,.jsx .",
