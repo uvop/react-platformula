@@ -90,6 +90,14 @@ class WheelPicker extends Component {
   }
 }
 
+const {
+  defaultMain: defaultMainStyle,
+} = StyleSheet.create({
+  defaultMain: {
+    width: '100%',
+  },
+});
+
 export const getCustom = (style = {}) => {
   const {
     color,
@@ -133,7 +141,12 @@ export const getCustom = (style = {}) => {
   });
 
   return props => (
-    <WheelPicker {...props} style={customStyle} itemStyle={customItemStyle} textAlign={textAlign} />
+    <WheelPicker
+      {...props}
+      style={[defaultMainStyle, customStyle]}
+      itemStyle={customItemStyle}
+      textAlign={textAlign}
+    />
   );
 };
 
