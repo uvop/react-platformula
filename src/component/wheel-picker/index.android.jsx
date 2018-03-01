@@ -90,6 +90,7 @@ class WheelPicker extends Component {
     return (
       <RNWheelPicker
         isCurved
+        visibleItemCount={5}
         selectedItemPosition={valueIndex}
         data={values.map(({ label }) => label)}
         onItemSelected={this.handleItemSelected}
