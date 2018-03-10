@@ -97,7 +97,7 @@ class WheelPicker extends Component {
         style={style}
         selectedItemTextColor={itemColor}
         itemTextColor={Color(itemColor).darken(0.4).hex()}
-        itemTextSize={((itemStyle.fontSize || 16) * (isTablet ? 1.3 : 2.6))}
+        itemTextSize={Math.round((itemStyle.fontSize || 16) * (isTablet ? 1.3 : 2.6))}
         itemTextFontFamily={itemStyle.fontFamily}
         itemTextAlign={this.getTextAlign()}
       />
